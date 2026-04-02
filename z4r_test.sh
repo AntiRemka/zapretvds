@@ -53,11 +53,11 @@ backup_strats() {
 #Создаём папки и забираем файлы папок lists, fake, extra_strats, копируем конфиг, скрипты для войсов DS, WA, TG
 get_repo() {
  mkdir -p /opt/zapret/lists /opt/zapret/extra_strats/TCP/{RKN,User,YT,temp} /opt/zapret/extra_strats/UDP/YT
- for listfile in autohostlist.txt cloudflare-ipset.txt cloudflare-ipset_v6.txt mycdnlist.txt myhostlist.txt netrogat.txt russia-discord.txt russia-youtube-rtmps.txt russia-youtube.txt russia-youtubeQ.txt; do wget -4 -P /opt/zapret/lists https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/master/lists/$listfile; done
- for fakefile in http_fake_MS.bin quic_{1..7}.bin syn_packet.bin tls_clienthello_{1..18}.bin tls_clienthello_2n.bin tls_clienthello_6a.bin; do wget -4 -P /opt/zapret/files/fake/ https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/master/fake/$fakefile; done
- wget -4 -O /opt/zapret/extra_strats/UDP/YT/List.txt https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/master/extra_strats/UDP/YT/List.txt
- wget -4 -O /opt/zapret/extra_strats/TCP/RKN/List.txt https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/master/extra_strats/TCP/RKN/List.txt
- wget -4 -O /opt/zapret/extra_strats/TCP/YT/List.txt https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/master/extra_strats/TCP/YT/List.txt
+ for listfile in autohostlist.txt cloudflare-ipset.txt cloudflare-ipset_v6.txt mycdnlist.txt myhostlist.txt netrogat.txt russia-discord.txt russia-youtube-rtmps.txt russia-youtube.txt russia-youtubeQ.txt; do wget -4 -P /opt/zapret/lists https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/lists/$listfile; done
+ for fakefile in http_fake_MS.bin quic_{1..7}.bin syn_packet.bin tls_clienthello_{1..18}.bin tls_clienthello_2n.bin tls_clienthello_6a.bin; do wget -4 -P /opt/zapret/files/fake/ https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/fake/$fakefile; done
+ wget -4 -O /opt/zapret/extra_strats/UDP/YT/List.txt https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/extra_strats/UDP/YT/List.txt
+ wget -4 -O /opt/zapret/extra_strats/TCP/RKN/List.txt https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/extra_strats/TCP/RKN/List.txt
+ wget -4 -O /opt/zapret/extra_strats/TCP/YT/List.txt https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/extra_strats/TCP/YT/List.txt
  touch /opt/zapret/extra_strats/UDP/YT/{1..8}.txt /opt/zapret/extra_strats/TCP/RKN/{1..17}.txt /opt/zapret/extra_strats/TCP/User/{1..17}.txt /opt/zapret/extra_strats/TCP/YT/{1..17}.txt /opt/zapret/extra_strats/TCP/temp/{1..17}.txt
  if [ -d /opt/extra_strats ]; then
   rm -rf /opt/zapret/extra_strats
@@ -68,7 +68,7 @@ get_repo() {
   echo "Востановление настроек подбора из резерва выполнено."
  fi
  #Копирование нашего конфига на замену стандартному и скриптов для войсов DS, WA, TG
- wget -4 -O /opt/zapret/config.default https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/master/config.default
+ wget -4 -O /opt/zapret/config.default https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/config.default
  if command -v nft >/dev/null 2>&1; then
   sed -i 's/^FWTYPE=iptables$/FWTYPE=nftables/' "/opt/zapret/config.default"
  fi
@@ -254,13 +254,13 @@ install_zapret_reboot() {
 #Для Entware Keenetic + merlin
 entware_fixes() {
  if [ "$hardware" = "keenetic" ]; then
-  wget -4 -O /opt/zapret/init.d/sysv/zapret https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/master/Entware/zapret
+  wget -4 -O /opt/zapret/init.d/sysv/zapret https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/Entware/zapret
   chmod +x /opt/zapret/init.d/sysv/zapret
   echo "Права выданы /opt/zapret/init.d/sysv/zapret"
-  wget -4 -q -O /opt/etc/ndm/netfilter.d/000-zapret.sh https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/master/Entware/000-zapret.sh
+  wget -4 -q -O /opt/etc/ndm/netfilter.d/000-zapret.sh https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/Entware/000-zapret.sh
   chmod +x /opt/etc/ndm/netfilter.d/000-zapret.sh
   echo "Права выданы /opt/etc/ndm/netfilter.d/000-zapret.sh"
-  wget -4 -q -O /opt/etc/init.d/S00fix https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/master/Entware/S00fix
+  wget -4 -q -O /opt/etc/init.d/S00fix https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/Entware/S00fix
   chmod +x /opt/etc/init.d/S00fix
   echo "Права выданы /opt/etc/init.d/S00fix"
   cp -a /opt/zapret/init.d/custom.d.examples.linux/10-keenetic-udp-fix /opt/zapret/init.d/sysv/custom.d/10-keenetic-udp-fix
