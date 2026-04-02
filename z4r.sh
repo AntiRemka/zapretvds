@@ -49,11 +49,11 @@ backup_strats() {
 #Создаём папки и забираем файлы папок lists, fake, extra_strats, копируем конфиг, скрипты для войсов DS, WA, TG
 get_repo() {
  mkdir -p /opt/zapret/lists /opt/zapret/extra_strats/TCP/{RKN,User,YT,temp} /opt/zapret/extra_strats/UDP/YT
- for listfile in cloudflare-ipset.txt cloudflare-ipset_v6.txt netrogat.txt russia-discord.txt russia-youtube-rtmps.txt russia-youtube.txt russia-youtubeQ.txt; do curl -L -o /opt/zapret/lists/$listfile https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/lists/$listfile; done
- curl -L "https://github.com/AntiRemka/zapretvds/refs/heads/master/fake_files.tar.gz" | tar -xz -C /opt/zapret/files/fake
- curl -L -o /opt/zapret/extra_strats/UDP/YT/List.txt https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/extra_strats/UDP/YT/List.txt
- curl -L -o /opt/zapret/extra_strats/TCP/RKN/List.txt https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/extra_strats/TCP/RKN/List.txt
- curl -L -o /opt/zapret/extra_strats/TCP/YT/List.txt https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/extra_strats/TCP/YT/List.txt
+ for listfile in cloudflare-ipset.txt cloudflare-ipset_v6.txt netrogat.txt russia-discord.txt russia-youtube-rtmps.txt russia-youtube.txt russia-youtubeQ.txt; do curl -L -o /opt/zapret/lists/$listfile https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/raw/master/lists/$listfile; done
+ curl -L "https://github.com/IndeecFOX/zapret4rocket/raw/master/fake_files.tar.gz" | tar -xz -C /opt/zapret/files/fake
+ curl -L -o /opt/zapret/extra_strats/UDP/YT/List.txt https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/raw/master/extra_strats/UDP/YT/List.txt
+ curl -L -o /opt/zapret/extra_strats/TCP/RKN/List.txt https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/raw/master/extra_strats/TCP/RKN/List.txt
+ curl -L -o /opt/zapret/extra_strats/TCP/YT/List.txt https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/raw/master/extra_strats/TCP/YT/List.txt
  touch /opt/zapret/lists/autohostlist.txt /opt/zapret/extra_strats/UDP/YT/{1..8}.txt /opt/zapret/extra_strats/TCP/RKN/{1..17}.txt /opt/zapret/extra_strats/TCP/User/{1..17}.txt /opt/zapret/extra_strats/TCP/YT/{1..17}.txt /opt/zapret/extra_strats/TCP/temp/{1..17}.txt
  if [ -d /opt/extra_strats ]; then
   rm -rf /opt/zapret/extra_strats
@@ -64,7 +64,7 @@ get_repo() {
   echo "Востановление настроек подбора из резерва выполнено."
  fi
  #Копирование нашего конфига на замену стандартному и скриптов для войсов DS, WA, TG
- curl -L -o /opt/zapret/config.default https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/config.default
+ curl -L -o /opt/zapret/config.default https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/raw/master/config.default
  if command -v nft >/dev/null 2>&1; then
   sed -i 's/^FWTYPE=iptables$/FWTYPE=nftables/' "/opt/zapret/config.default"
  fi
@@ -268,13 +268,13 @@ install_zapret_reboot() {
 #Для Entware Keenetic + merlin
 entware_fixes() {
  if [ "$hardware" = "keenetic" ]; then
-  curl -L -o /opt/zapret/init.d/sysv/zapret https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/Entware/zapret
+  curl -L -o /opt/zapret/init.d/sysv/zapret https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/raw/master/Entware/zapret
   chmod +x /opt/zapret/init.d/sysv/zapret
   echo "Права выданы /opt/zapret/init.d/sysv/zapret"
-  curl -L -o /opt/etc/ndm/netfilter.d/000-zapret.sh https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/Entware/000-zapret.sh
+  curl -L -o /opt/etc/ndm/netfilter.d/000-zapret.sh https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/raw/master/Entware/000-zapret.sh
   chmod +x /opt/etc/ndm/netfilter.d/000-zapret.sh
   echo "Права выданы /opt/etc/ndm/netfilter.d/000-zapret.sh"
-  curl -L -o /opt/etc/init.d/S00fix https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/Entware/S00fix
+  curl -L -o /opt/etc/init.d/S00fix https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/raw/master/Entware/S00fix
   chmod +x /opt/etc/init.d/S00fix
   echo "Права выданы /opt/etc/init.d/S00fix"
   cp -a /opt/zapret/init.d/custom.d.examples.linux/10-keenetic-udp-fix /opt/zapret/init.d/sysv/custom.d/10-keenetic-udp-fix
@@ -322,8 +322,8 @@ get_panel() {
      echo "Установка 3proxy (by SnoyIatk). Доустановка с apt build-essential для сборки (debian/ubuntu)"
 	 apt update && apt install build-essential
      bash <(curl -Ls https://raw.githubusercontent.com/SnoyIatk/3proxy/master/3proxyinstall.sh)
-     curl -L -o /etc/3proxy/.proxyauth https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/del.proxyauth
-     curl -L -o /etc/3proxy/3proxy.cfg https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/3proxy.cfg
+     curl -L -o /etc/3proxy/.proxyauth https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/raw/master/del.proxyauth
+     curl -L -o /etc/3proxy/3proxy.cfg https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/raw/master/3proxy.cfg
  elif [[ "$clean_answer" == "MARZBAN" ]]; then
      echo "Установка Marzban"
      bash -c "$(curl -sL https://github.com/Gozargah/Marzban-scripts/raw/master/marzban.sh)" @ install
