@@ -16,7 +16,7 @@ YouTube без ограничений, работа войсов Telegram, Whats
 
 **Установка/обновление/подбор стратегий** (копируйте и вставляйте в SSH):
 ```bash
-curl -O https://raw.githubusercontent.com/IndeecFOX/zapret4rocket/master/z4r.sh && bash z4r.sh && rm z4r.sh
+curl -O https://raw.githubusercontent.com/AntiRemka/zapretvds/refs/heads/master/z4r.sh && bash z4r.sh && rm z4r.sh
 ```
 
 **После запуска:**
