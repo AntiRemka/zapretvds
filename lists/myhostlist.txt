@@ -12,3 +12,8 @@ tntracker.org
 rgpub.io
 dradis-prod.rdatasrv.net
 viber.com
+web.whatsapp.com
+whatsapp.com
+instagram.com
+api.telegram.org
+x.com
