@@ -13,3 +13,8 @@ cdnbunny.org
 cdn.strapsco.com
 i.kym-cdn.com
 doppiocdn.media
+web.whatsapp.com
+whatsapp.com
+instagram.com
+api.telegram.org
+x.com
